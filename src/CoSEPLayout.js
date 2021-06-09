@@ -81,6 +81,13 @@ CoSEPLayout.prototype.initSpringEmbedder = function () {
         this.displacementThresholdPerNode * this.getAllNodes().length;
 
     this.repulsionRange = this.calcRepulsionRange();
+    
+    // variables for cooling
+    this.coolingCycle = 0;
+    this.maxCoolingCycle = this.maxIterations/FDLayoutConstants.CONVERGENCE_CHECK_PERIOD;
+    this.finalTemperature = 0.04;
+    this.coolingAdjuster = 1;     
+    
 };
 
 // -----------------------------------------------------------------------------
@@ -112,7 +119,7 @@ CoSEPLayout.prototype.secondPhaseInit = function(){
     this.initialCoolingFactor = CoSEPConstants.PHASE2_INITIAL_COOLING_FACTOR;
     this.coolingCycle = 0;
     this.maxCoolingCycle = this.maxIterations / FDLayoutConstants.CONVERGENCE_CHECK_PERIOD;
-    this.finalTemperature = FDLayoutConstants.CONVERGENCE_CHECK_PERIOD / this.maxIterations;
+    this.finalTemperature = 0.04;
     this.coolingAdjuster = 1;
 
     // Calc of spring forces have to be changes according to ports and stored for edge shifting and rotation
@@ -173,7 +180,7 @@ CoSEPLayout.prototype.polishingPhaseInit = function(){
     this.initialCoolingFactor = CoSEPConstants.PHASE3_INITIAL_COOLING_FACTOR;
     this.coolingCycle = 0;
     this.maxCoolingCycle = this.maxIterations / FDLayoutConstants.CONVERGENCE_CHECK_PERIOD;
-    this.finalTemperature = FDLayoutConstants.CONVERGENCE_CHECK_PERIOD / this.maxIterations;
+    this.finalTemperature = 0.04;
     this.coolingAdjuster = 1;
 };
 
